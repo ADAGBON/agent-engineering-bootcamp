@@ -5,6 +5,8 @@ This is a complete RAG (Retrieval-Augmented Generation) system built for the Age
 ## 🚀 Features
 
 - **Multi-source RAG**: Supports Vectorize.io, or OpenAI-only mode
+- **Function Calling Agent**: AI agent with 2 tools (Week 3 Assignment!)
+- **Document Upload System**: Upload PDFs, TXT, MD, DOCX, DOC, CSV files
 - **Beautiful CLI**: Colored terminal interface with loading animations
 - **Flexible Architecture**: Easy to add new RAG sources
 - **Production Ready**: Proper error handling and environment management
@@ -88,7 +90,30 @@ You can upload documents to your pipeline via:
 ### Run the Interactive Chat
 
 ```bash
-python main.py
+python main.py chat
+```
+
+### Run the Function Calling Agent (Assignment!)
+
+```bash
+python main.py agent
+```
+
+The agent has **2 Tools**:
+1. **Document Search**: Searches your uploaded documents using Vectorize.io
+2. **Web Search**: Searches the internet for current information
+
+### Upload Documents
+
+```bash
+# Upload single file
+python main.py upload file document.pdf
+
+# Upload multiple files
+python main.py upload file *.pdf
+
+# Upload entire folder
+python main.py upload folder ./documents
 ```
 
 ### Example Conversation
@@ -206,13 +231,23 @@ To add a new RAG source (like Pinecone, Weaviate, etc.):
 
 ## 🎯 Assignment Submission
 
-This project is ready for Agent Engineering Bootcamp assignment submission:
+This project fulfills the Agent Engineering Bootcamp assignments:
 
+### Week 1 & 2: RAG System ✅
 - ✅ **LiteLLM Integration**: Uses LiteLLM for LLM calls
 - ✅ **RAG Implementation**: Complete retrieval-augmented generation
 - ✅ **Vectorize Integration**: Connects to Vectorize.io for document search
 - ✅ **Professional Structure**: Clean, documented, and modular code
 - ✅ **CLI Interface**: Beautiful command-line interaction
+
+### Week 3: Function Calling Agent ✅  
+- ✅ **Tool 1**: RAG document retrieval from Vectorize.io
+- ✅ **Tool 2**: Web search for current information  
+- ✅ **Function Calling**: Uses OpenAI's function calling API
+- ✅ **Agent Architecture**: Intelligent tool selection and execution
+- ✅ **Error Handling**: Graceful handling of tool failures
+
+**Ready for submission!** 🚀
 
 ---
 

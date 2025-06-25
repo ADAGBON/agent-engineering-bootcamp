@@ -17,6 +17,7 @@ from vectorize_wrapper import VectorizeWrapper
 from rag_chat import RAGChat
 from cli_interface import CLIInterface
 from document_uploader import DocumentUploader
+from function_calling_agent import FunctionCallingAgent
 
 # Load environment variables
 load_dotenv()
@@ -48,6 +49,7 @@ def get_rag_source():
 
 def run_chat_mode(cli):
     """Run the interactive chat mode."""
+    
     try:
         # Get RAG source and required environment variables
         rag_source, required_env_vars = get_rag_source()
@@ -182,6 +184,35 @@ def run_upload_mode(cli, upload_args):
         return 1
 
 
+def run_agent_mode(cli):
+    """Run the function calling agent mode."""
+    try:
+        # Check required environment variables for agent
+        required_vars = ["OPENAI_API_KEY"]
+        missing_vars = check_environment_variables(required_vars)
+        
+        if missing_vars:
+            cli.print_error("Missing required environment variables for agent:")
+            for var in missing_vars:
+                cli.print_error(f"  - {var}")
+            cli.print_info("\nAgent mode requires OpenAI API key:")
+            cli.print_info("  OPENAI_API_KEY=your-openai-api-key")
+            return 1
+        
+        # Initialize function calling agent
+        agent = FunctionCallingAgent(cli)
+        cli.print_success("Function calling agent initialized!")
+        
+        # Start interactive agent chat
+        agent.interactive_chat()
+        
+        return 0
+        
+    except Exception as e:
+        cli.print_error(f"Agent initialization failed: {e}")
+        return 1
+
+
 def main():
     """Main function to run the RAG chat system or document upload."""
     
@@ -193,11 +224,13 @@ Commands:
   chat                                    # Start interactive RAG chat
   upload file document.pdf               # Upload single file
   upload folder ./documents              # Upload folder
+  agent                                   # Start function calling agent (Assignment!)
   
 Examples:
   python main.py chat                     # Start chat mode
   python main.py upload file *.pdf       # Upload all PDF files
   python main.py upload folder docs/     # Upload all files from docs folder
+  python main.py agent                    # Start agent with tools (ASSIGNMENT)
         """
     )
     
@@ -205,6 +238,9 @@ Examples:
     
     # Chat mode (default)
     chat_parser = subparsers.add_parser('chat', help='Start interactive RAG chat')
+    
+    # Agent mode (NEW - for assignment)
+    agent_parser = subparsers.add_parser('agent', help='Start function calling agent with tools')
     
     # Upload mode
     upload_parser = subparsers.add_parser('upload', help='Upload documents to RAG system')
@@ -235,6 +271,8 @@ Examples:
             upload_parser.print_help()
             return 1
         return run_upload_mode(cli, args)
+    elif args.mode == 'agent':
+        return run_agent_mode(cli)
     else:
         parser.print_help()
         return 1
