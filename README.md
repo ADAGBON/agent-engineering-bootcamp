@@ -6,6 +6,7 @@ This is a complete RAG (Retrieval-Augmented Generation) system built for the Age
 
 - **Multi-source RAG**: Supports Vectorize.io, or OpenAI-only mode
 - **Function Calling Agent**: AI agent with 2 tools (Week 2 Assignment!)
+- **Web Interface**: Beautiful modern web UI for the agent (BONUS!)
 - **Document Upload System**: Upload PDFs, TXT, MD, DOCX, DOC, CSV files
 - **Beautiful CLI**: Colored terminal interface with loading animations
 - **Flexible Architecture**: Easy to add new RAG sources
@@ -95,9 +96,16 @@ python main.py chat
 
 ### Run the Function Calling Agent (Assignment!)
 
+**Command Line:**
 ```bash
 python main.py agent
 ```
+
+**Web Interface:**
+```bash
+python main.py web
+```
+Then open: http://localhost:5000
 
 The agent has **2 Tools**:
 1. **Document Search**: Searches your uploaded documents using Vectorize.io
@@ -156,6 +164,11 @@ agent-engineering-bootcamp/
 ├── rag_source_base.py     # Base interface for RAG sources
 ├── vectorize_wrapper.py   # Vectorize.io integration
 ├── cli_interface.py       # Beautiful CLI interface
+├── agent_tools.py         # Function calling tools (Week 2)
+├── function_calling_agent.py # Main agent with tools (Week 2)
+├── web_app.py             # Flask web interface (BONUS)
+├── templates/             # Web interface templates
+│   └── index.html         # Main chat interface
 ├── requirements.txt       # Dependencies
 ├── README.md             # This file
 └── my_project/           # Original project structure

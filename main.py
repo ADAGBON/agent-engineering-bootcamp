@@ -213,6 +213,39 @@ def run_agent_mode(cli):
         return 1
 
 
+def run_web_mode(cli):
+    """Run the web interface mode."""
+    try:
+        # Check required environment variables
+        required_vars = ["OPENAI_API_KEY"]
+        missing_vars = check_environment_variables(required_vars)
+        
+        if missing_vars:
+            cli.print_error("Missing required environment variables for web mode:")
+            for var in missing_vars:
+                cli.print_error(f"  - {var}")
+            cli.print_info("\nWeb mode requires OpenAI API key:")
+            cli.print_info("  OPENAI_API_KEY=your-openai-api-key")
+            return 1
+        
+        cli.print_success("Starting web interface...")
+        cli.print_info("🌐 Your function calling agent will be available at: http://localhost:5000")
+        cli.print_info("🔧 Press Ctrl+C to stop the server")
+        
+        # Import and run web app
+        from web_app import app
+        app.run(host='0.0.0.0', port=5000, debug=False)
+        
+        return 0
+        
+    except KeyboardInterrupt:
+        cli.print_success("\nWeb server stopped.")
+        return 0
+    except Exception as e:
+        cli.print_error(f"Web server failed: {e}")
+        return 1
+
+
 def main():
     """Main function to run the RAG chat system or document upload."""
     
@@ -225,12 +258,14 @@ Commands:
   upload file document.pdf               # Upload single file
   upload folder ./documents              # Upload folder
   agent                                   # Start function calling agent (Week 2 Assignment!)
+  web                                     # Start web interface for agent (NEW!)
   
 Examples:
   python main.py chat                     # Start chat mode
   python main.py upload file *.pdf       # Upload all PDF files
   python main.py upload folder docs/     # Upload all files from docs folder
   python main.py agent                    # Start agent with tools (WEEK 2 ASSIGNMENT)
+  python main.py web                      # Start web interface (WEEK 2 BONUS!)
         """
     )
     
@@ -241,6 +276,9 @@ Examples:
     
     # Agent mode (NEW - for assignment)
     agent_parser = subparsers.add_parser('agent', help='Start function calling agent with tools')
+    
+    # Web mode (BONUS - web interface)
+    web_parser = subparsers.add_parser('web', help='Start web interface for function calling agent')
     
     # Upload mode
     upload_parser = subparsers.add_parser('upload', help='Upload documents to RAG system')
@@ -273,6 +311,8 @@ Examples:
         return run_upload_mode(cli, args)
     elif args.mode == 'agent':
         return run_agent_mode(cli)
+    elif args.mode == 'web':
+        return run_web_mode(cli)
     else:
         parser.print_help()
         return 1
