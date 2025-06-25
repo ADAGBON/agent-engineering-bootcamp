@@ -224,13 +224,13 @@ Commands:
   chat                                    # Start interactive RAG chat
   upload file document.pdf               # Upload single file
   upload folder ./documents              # Upload folder
-  agent                                   # Start function calling agent (Assignment!)
+  agent                                   # Start function calling agent (Week 2 Assignment!)
   
 Examples:
   python main.py chat                     # Start chat mode
   python main.py upload file *.pdf       # Upload all PDF files
   python main.py upload folder docs/     # Upload all files from docs folder
-  python main.py agent                    # Start agent with tools (ASSIGNMENT)
+  python main.py agent                    # Start agent with tools (WEEK 2 ASSIGNMENT)
         """
     )
     

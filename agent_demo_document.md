@@ -43,4 +43,4 @@ This demonstrates advanced AI agent capabilities including:
 ✅ **Interactive Chat**: Beautiful CLI interface  
 ✅ **Error Handling**: Graceful handling of tool failures
 
-Perfect for the Agent Engineering Bootcamp Week 3 assignment! 
+Perfect for the Agent Engineering Bootcamp Week 2 assignment! 

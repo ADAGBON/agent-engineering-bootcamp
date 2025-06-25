@@ -5,7 +5,7 @@ This is a complete RAG (Retrieval-Augmented Generation) system built for the Age
 ## 🚀 Features
 
 - **Multi-source RAG**: Supports Vectorize.io, or OpenAI-only mode
-- **Function Calling Agent**: AI agent with 2 tools (Week 3 Assignment!)
+- **Function Calling Agent**: AI agent with 2 tools (Week 2 Assignment!)
 - **Document Upload System**: Upload PDFs, TXT, MD, DOCX, DOC, CSV files
 - **Beautiful CLI**: Colored terminal interface with loading animations
 - **Flexible Architecture**: Easy to add new RAG sources
@@ -233,18 +233,18 @@ To add a new RAG source (like Pinecone, Weaviate, etc.):
 
 This project fulfills the Agent Engineering Bootcamp assignments:
 
-### Week 1 & 2: RAG System ✅
+### Week 1: Basic RAG System ✅
 - ✅ **LiteLLM Integration**: Uses LiteLLM for LLM calls
-- ✅ **RAG Implementation**: Complete retrieval-augmented generation
+- ✅ **RAG Implementation**: Complete retrieval-augmented generation  
 - ✅ **Vectorize Integration**: Connects to Vectorize.io for document search
-- ✅ **Professional Structure**: Clean, documented, and modular code
 - ✅ **CLI Interface**: Beautiful command-line interaction
 
-### Week 3: Function Calling Agent ✅  
+### Week 2: Function Calling Agent ✅  
 - ✅ **Tool 1**: RAG document retrieval from Vectorize.io
 - ✅ **Tool 2**: Web search for current information  
 - ✅ **Function Calling**: Uses OpenAI's function calling API
 - ✅ **Agent Architecture**: Intelligent tool selection and execution
+- ✅ **Professional Structure**: Clean, documented, and modular code
 - ✅ **Error Handling**: Graceful handling of tool failures
 
 **Ready for submission!** 🚀
@@ -252,3 +252,15 @@ This project fulfills the Agent Engineering Bootcamp assignments:
 ---
 
 **Built for the Agent Engineering Bootcamp** 🤖✨ 
+
+Commands:
+  chat                                    # Start interactive RAG chat
+  upload file document.pdf               # Upload single file
+  upload folder ./documents              # Upload folder
+  agent                                   # Start function calling agent (Week 2 Assignment!)
+  
+Examples:
+  python main.py chat                     # Start chat mode
+  python main.py upload file *.pdf       # Upload all PDF files
+  python main.py upload folder docs/     # Upload all files from docs folder
+  python main.py agent                    # Start agent with tools (WEEK 2 ASSIGNMENT) 
